@@ -1,0 +1,75 @@
+<div class="app-layout">
+  <!-- Top Navigation Bar (Only visible when user is logged in) -->
+  <app-navbar *ngIf="pmsService.isAuthenticated() && pmsService.activeView() !== 'login'"></app-navbar>
+
+  <!-- Login View (When unauthenticated OR when on login view) -->
+  <div *ngIf="!pmsService.isAuthenticated() || pmsService.activeView() === 'login'" class="main-content-login">
+    <!-- Flow guide can also be viewed from login screen if toggled -->
+    <div *ngIf="pmsService.showFlowGuide()" class="flow-guide-wrapper login-flow-wrap">
+      <app-flow-diagram></app-flow-diagram>
+    </div>
+    <app-login *ngIf="!pmsService.showFlowGuide()"></app-login>
+  </div>
+
+  <!-- Standard Dashboard & System Layout (When authenticated and not on login) -->
+  <div *ngIf="pmsService.isAuthenticated() && pmsService.activeView() !== 'login'" class="layout-body">
+    <!-- Sidebar Navigation -->
+    <app-sidebar></app-sidebar>
+
+    <!-- Main View Content Area -->
+    <main class="main-content-area">
+      <!-- Interactive Flow Diagram Overlay/View (if toggled) -->
+      <div *ngIf="pmsService.showFlowGuide()" class="flow-guide-wrapper">
+        <app-flow-diagram></app-flow-diagram>
+      </div>
+
+      <!-- ADMIN PERSPECTIVE VIEWS -->
+      <ng-container *ngIf="!pmsService.showFlowGuide() && pmsService.userRole() === 'admin'">
+        <!-- Step 2: Dashboard -->
+        <app-admin-dashboard *ngIf="pmsService.activeView() === 'dashboard'"></app-admin-dashboard>
+
+        <!-- Step 3: Create New Project -->
+        <app-admin-create-project *ngIf="pmsService.activeView() === 'create-project'"></app-admin-create-project>
+
+        <!-- Step 4: Manage Projects & Tasks -->
+        <app-admin-projects-list *ngIf="pmsService.activeView() === 'projects'"></app-admin-projects-list>
+
+        <!-- Step 5: View Stages / Tasks in Project -->
+        <app-project-detail *ngIf="pmsService.activeView() === 'project-detail'"></app-project-detail>
+
+        <!-- Step 6: Daily Tasks & Alerts -->
+        <app-daily-tasks *ngIf="pmsService.activeView() === 'daily-tasks'"></app-daily-tasks>
+
+        <!-- Step 8: Manage Users & Settings -->
+        <app-admin-users-settings *ngIf="pmsService.activeView() === 'users-settings'"></app-admin-users-settings>
+
+        <!-- Reports / Notifications -->
+        <app-notifications-view *ngIf="pmsService.activeView() === 'notifications'"></app-notifications-view>
+      </ng-container>
+
+      <!-- SITE MANAGER PERSPECTIVE VIEWS -->
+      <ng-container *ngIf="!pmsService.showFlowGuide() && pmsService.userRole() === 'site-manager'">
+        <!-- SM Step 2: Dashboard -->
+        <app-sm-dashboard *ngIf="pmsService.activeView() === 'dashboard'"></app-sm-dashboard>
+
+        <!-- SM Step 3: View Assigned Projects -->
+        <app-sm-assigned-projects *ngIf="pmsService.activeView() === 'projects'"></app-sm-assigned-projects>
+
+        <!-- SM Step 4: Project Stages & Tasks -->
+        <app-project-detail *ngIf="pmsService.activeView() === 'project-detail'"></app-project-detail>
+
+        <!-- SM Step 5: Daily Tasks -->
+        <app-daily-tasks *ngIf="pmsService.activeView() === 'daily-tasks'"></app-daily-tasks>
+
+        <!-- SM Step 6: Notifications -->
+        <app-notifications-view *ngIf="pmsService.activeView() === 'notifications'"></app-notifications-view>
+
+        <!-- SM Step 7: Profile & Settings -->
+        <app-sm-profile *ngIf="pmsService.activeView() === 'profile'"></app-sm-profile>
+      </ng-container>
+
+      <!-- Bottom Task Status Legend (Present on all main screens matching diagram) -->
+      <app-status-legend></app-status-legend>
+    </main>
+  </div>
+</div>

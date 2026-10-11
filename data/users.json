@@ -1,0 +1,57 @@
+[
+  {
+    "id": "u-admin",
+    "name": "Admin Director",
+    "role": "Admin",
+    "email": "admin@interiorpms.com",
+    "password": "password123",
+    "phone": "+91 98480 99999",
+    "status": "Active",
+    "avatarBg": "#0F172A",
+    "assignedProjectsCount": 6
+  },
+  {
+    "id": "u1",
+    "name": "Ravi Kumar",
+    "role": "Site Manager",
+    "email": "ravi@company.com",
+    "password": "password123",
+    "phone": "+91 98480 12345",
+    "status": "Active",
+    "avatarBg": "#2563EB",
+    "assignedProjectsCount": 3
+  },
+  {
+    "id": "u2",
+    "name": "Suresh",
+    "role": "Site Manager",
+    "email": "suresh@company.com",
+    "password": "password123",
+    "phone": "+91 98480 23456",
+    "status": "Active",
+    "avatarBg": "#059669",
+    "assignedProjectsCount": 2
+  },
+  {
+    "id": "u3",
+    "name": "Anil",
+    "role": "Site Manager",
+    "email": "anil@company.com",
+    "password": "password123",
+    "phone": "+91 98480 34567",
+    "status": "Active",
+    "avatarBg": "#7C3AED",
+    "assignedProjectsCount": 2
+  },
+  {
+    "id": "u4",
+    "name": "Priya Sharma",
+    "role": "Interior Designer",
+    "email": "priya@company.com",
+    "password": "password123",
+    "phone": "+91 98480 45678",
+    "status": "Active",
+    "avatarBg": "#DB2777",
+    "assignedProjectsCount": 4
+  }
+]
